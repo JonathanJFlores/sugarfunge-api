@@ -16,7 +16,7 @@ url = { version = "2", features = ["serde"] }
 scale-info = { version = "1.0.0", default-features = false, features = [] }
 codec = { package = "parity-scale-codec", version = "2", default-features = false, features = ["derive", "full"] }
 derive_more = { version = "0.99.0", default-features = false }
-actix-web ="4.0.0-beta.21"
+actix-web = "4.0.0-beta.21" 
 awc = "3.0.0-beta.10"
 dotenv = "0.15.0"
 

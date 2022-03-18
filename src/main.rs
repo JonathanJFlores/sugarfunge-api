@@ -30,7 +30,7 @@ mod util;
 mod user;
 
 const KEYCLOAK_PK: &str = "-----BEGIN PUBLIC KEY-----
-MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgjxDaoGghFwAkdoo8YqoF4rVhZVmbkNTXrqDba47muKCnaULzlzOK2n//bB9Twaa/yxZ0cwli2vqsci1cNKQNh3zZjlLjeK6lEc/iDQvPLXad8/rRqj3ZgH+01YscOZBGdVq2GAOL+WYr3bhLD6yNiUOHXJQYrRoekfMYiQRmvV+c1/eXjFEbcqwOxKGxZ6CPIwWCEjPjwW2Hp8E4Ap518bzlKie491OJ9bkjAGf/6qhM/faf7Sx99Bhq8tk/d1fVZSCkW+MP+by/EyAruOS/0KEzHU6ERSp6gtoQ9AFYdYSv/J5/fYzWnuDemTWOy7GmUrdJI8D1CDmNKVgdYPDFwIDAQAB
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxlFO8ZQyPq86xgeg0mlTvItO2DvQkwmDQ1mBinCqY2IT1+L9Ov0HBPiw65Y77b81CD1XBc01uL8IH1vV5nGg6ESMguw5qASZNyJ4a7y7aRxjP4Gwg+8vqgCSzUq4bwMpMnQI8dXllCLvNskAONkRU9MMFN3nqTyZJcrzUZADN11uzfu6ZovEZJkXla/4hDITVFZP44JjGyr6IBxq3DzN96SPR3lwi+Ip6IsQGWuTHpjAEi1dEOeJhQ29nbvAywnrYikxZlHqrKX1nUmzUu8cF9nVOor/fQK3gCkD0wsndc77K5vNKkyLO3SbCs0IlRjpexX3fgQ/eduDXfSUoUOfeQIDAQAB
 -----END PUBLIC KEY-----";
 
 #[actix_web::main]
@@ -75,10 +75,10 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .wrap(middleware::Compress::default())
             .wrap(middleware::Logger::default())
-            .wrap(cors)
             .app_data(Data::new(state.clone()))
             .app_data(Data::new(env.clone()))
             .wrap(keycloak_auth)
+            .wrap(cors)
             .route("user/verify_seed", web::get().to(user::verify_seed))
             .route("account/create", web::post().to(account::create))
             .route("account/fund", web::post().to(account::fund))
