@@ -24,7 +24,7 @@ struct Credentials {
 
 #[derive(Serialize, Deserialize)]
 pub struct SugarTokenOutput {
-    access_token: String,
+    pub access_token: String,
 }
 
 #[derive(Serialize, Deserialize)]
